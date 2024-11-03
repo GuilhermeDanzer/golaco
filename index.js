@@ -90,7 +90,6 @@ const createTempMailAccount = async () => {
   await browser.close()
   return inputValue
 }
-
 // Function to check the email inbox for verification emails
 const checkEmailBox = async email => {
   const browser = await puppeteer.launch({
@@ -158,7 +157,7 @@ const main = async numberOfAccounts => {
   for (let i = 0; i < numberOfAccounts; i++) {
     currentEmail = await createTempMailAccount()
     const password = 'password123' // You can generate or customize this if needed
-    await createGolacoAccount(currentEmail, password, index)
+    await createGolacoAccount(currentEmail, password, i)
     accounts.push({ email: currentEmail, password })
     await setTimeout(6000) // Wait before checking the email box
     await checkEmailBox(currentEmail) // Check the email for verification
@@ -169,4 +168,4 @@ const main = async numberOfAccounts => {
 }
 
 // Change the number of accounts you want to create
-main(2)
+main(1)
